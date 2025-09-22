@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Mensaje Especial 💖</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #ffe6f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    color: #333;
+  }
+
+  .container {
+    text-align: center;
+    position: relative;
+    z-index: 10;
+  }
+
+  input, button {
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    margin: 5px;
+  }
+
+  button {
+    border: none;
+    background: #ff4d94;
+    color: white;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #ff1a75;
+  }
+
+  #message {
+    display: none;
+    font-size: 18px;
+    max-width: 800px;
+    margin: 20px auto;
+    line-height: 1.6;
+    text-align: justify;
+    background: rgba(255,255,255,0.9);
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  #downloadBtn {
+    display: none;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #ff66aa;
+    color: white;
+    cursor: pointer;
+  }
+
+  .flower {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    animation: floatUp 6s linear infinite;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity:1; }
+    100% { transform: translateY(-600px) scale(0.5); opacity:0; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Ingresa la contraseña 💌</h1>
+  <h1>Como dices el diminutivo de mi nombre que me gusta mucho?</h1>
+  <input type="password" id="password" placeholder="Contraseña">
+  <button id="openBtn">Abrir</button>
+
+  <div id="message"></div>
+  <button id="downloadBtn">💾 Descargar mensaje</button>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const passwordCorrect = "fercito";
+
+  const fullText = "tal vez no es mucho, y me siento bien miserable por haberlo dado así, pero trabajaré mucho para cada día mejorar para ti, y que no seas espectadora, lo hice con todo mi amor y con algunas lágrimas en los ojos por haber sido tan miserable, pero te amo con toda mi alma, y prometo que conforme vaya creciendo no te faltará nada a mi lado, me voy a encargar de que cada día seas más feliz conmigo, espero te guste este pequeño detalle, quiero que arreglemos nuestras cosas, porque eres todo en mi vida, absolutamente todo lo que tengo, y me haces tan feliz día con día, espero pronto podamos arreglar nuestra situación y solo nos quede darnos todo ese amor que nos tenemos pendientes, te amo con toda mi alma mi chaparrita linda, fuiste lo mejor que me pudo haber pasado, estoy tan agradecido con el universo por permitirme que estés a mi lado, y por permitirme ver tu sonrisa cada día, lo importante que eres para mí, que a pesar de todos los problemas que tenemos estoy perdidamente enamorado de ti, fuiste mi mejor casualidad y jamás olvidaré eso, estoy muy orgulloso de ti de lo que eres y de como poco a poco día tras día vas mejorando para ser mejor persona, a pesar de que tienes miedo de crecer y de fracasar pero sin importar nada yo te ayudaré en ese proceso y pase lo que pase estes o no estés a mi lado yo me aseguraré de que estés bien, siempre voy a estar para ti siempre, siempre, así ya no quieres estar conmigo así me termines me bloquees de todos lados y me digas que me odies voy a estar para ti, y si ya no estamos algún día juntos, me aseguraré de que estés bien y voy a estar siempre pendiente a ti, viendo cómo cumples tus sueños tus metas cómo vas mejorando y darme cuenta de que puede ser feliz, mientras tu seas feliz yo voy a estar bien, porque lo único que quiero es tu felicidad aunque no sea conmigo, espero te guste este pequeño detalle que aunque no es mucho y es muy insignificante lo hice con mucho amor y cariño para ti y lamento mucho no haberte dado algo más, como te digo pues me esforce mucho haciéndolo porque no quería que fueras espectadora y pues ajá espero te guste este pequeño detalle, vendrán cosas mejores me esforzare mucho día a día para que puedas estar bien conmigo y que pueda ser el hombre que tú deseas, te amo mi chaparrita bonita, siempre lleva claro que te amo infinitamente cómo no puedes llegar a tener una idea";
+
+  const openBtn = document.getElementById("openBtn");
+  const passwordInput = document.getElementById("password");
+  const messageDiv = document.getElementById("message");
+  const downloadBtn = document.getElementById("downloadBtn");
+
+  openBtn.addEventListener("click", function() {
+    if(passwordInput.value === passwordCorrect){
+      messageDiv.style.display = "block";
+      downloadBtn.style.display = "inline-block";
+      showFlowers();
+
+      // Texto del mensaje + botón de enlace
+      messageDiv.innerHTML = `
+        ${fullText}
+        <br><br>
+        <button id="linkBtn" style="
+          background:#ff4d94; 
+          color:white; 
+          border:none; 
+          padding:10px 20px; 
+          border-radius:10px; 
+          cursor:pointer;
+        ">💖 Ver sorpresa</button>
+      `;
+
+      // Evento para abrir el enlace al hacer clic en el botón
+      document.getElementById("linkBtn").addEventListener("click", function() {
+        window.open("https://4aprogramacion.github.io/florecitas/", "_blank");
+      });
+
+    } else {
+      alert("Contraseña incorrecta 😢");
+    }
+  });
+
+  function showFlowers(){
+    for(let i=0;i<30;i++){
+      let f = document.createElement("div");
+      f.classList.add("flower");
+      f.style.left = Math.random()*window.innerWidth + "px";
+      f.style.background = ["#ff4d94","#ff99cc","#ff66ff","#ffb3d9"][Math.floor(Math.random()*4)];
+      f.style.animationDuration = (4+Math.random()*3)+"s";
+      document.body.appendChild(f);
+      setTimeout(()=>{f.remove()},6000);
+    }
+  }
+
+  downloadBtn.addEventListener("click", function(){
+    const blob = new Blob([fullText], {type:"text/plain;charset=utf-8"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "mensaje_para_ti.txt";
+    a.click();
+  });
+});
+</script>
+</body>
+</html>
